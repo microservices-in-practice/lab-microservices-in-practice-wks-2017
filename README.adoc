@@ -1,6 +1,6 @@
 = Microservices for Java Developers
 
-This repository contains material for worskop about implementing microservices.
+This repository contains material for workshop about implementing microservices.
 
 == Copyright and Licensing
 
