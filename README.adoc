@@ -1,4 +1,4 @@
-= Microservices in practice
+= Microservices for Java Developers
 
 This repository contains material for worskop about implementing microservices.
 
