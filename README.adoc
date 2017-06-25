@@ -1,0 +1,8 @@
+= Microservices in practice
+
+This repository contains material for worskop about implementing microservices.
+
+== Copyright and Licensing
+
+Copyright (C) 2017 Krzysztof Sobkowiak +
+Free use of this software is granted under the terms of the link:LICENSE[Apache License].
