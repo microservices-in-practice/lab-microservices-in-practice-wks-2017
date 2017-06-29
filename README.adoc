@@ -1,4 +1,4 @@
-= Microservices for Java Developers
+= Microservices in Practice
 
 This repository contains material for workshop about implementing microservices.
 
