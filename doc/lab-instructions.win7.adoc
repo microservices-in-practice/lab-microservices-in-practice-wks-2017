@@ -1,0 +1,65 @@
+= Lab instructions
+
+
+== Decomposed steps
+
+=== Parent project
+
+Within the git cloned project, create a project named `workshop` using the maven `archetype:generate` plugin
+
+. Create the parent maven project
++
+[source, bash]
+----
+$ mvn archetype:generate ^
+        -DarchetypeGroupId=org.codehaus.mojo.archetypes ^
+        -DarchetypeArtifactId=pom-root ^
+        -DarchetypeVersion=RELEASE ^
+        -DinteractiveMode=false ^
+        -DgroupId=com.capgemini.lab.ms ^
+        -DartifactId=workshop ^
+        -Dversion=1.0.0-SNAPSHOT
+
+$ cd workshop
+----
+. Verify that your pom.xml file is similar to the following file.
++
+[source, xml]
+----
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.capgemini.lab.ms</groupId>
+  <artifactId>workshop</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>workshop</name>
+</project>
+----
+
+=== Customer Service project
+
+. Next create the `customer-service` maven module using the following JBoss Forge command. As this project is a
+Spring Boot project, we will pass as parameter to Forge the stack to be used which is `spring-boot`. Forge will
+create a new maven module, configure the `pom.xml` file.
+. Create the Spring Boot project using this command
++
+[source, bash]
+----
+C:\Trainings\wks17\lab-microservices-in-practice\workshop>forge
+Using Forge at C:\Trainings\wks17\oasp4j-ide-1.4.1\software\forge\bin\..
+
+    _____
+   |  ___|__  _ __ __ _  ___
+   | |_ / _ \| `__/ _` |/ _ \  \\
+   |  _| (_) | | | (_| |  __/  //
+   |_|  \___/|_|  \__, |\___|
+                   |__/
+
+JBoss Forge, version [ 3.7.1.Final ] - JBoss, by Red Hat, Inc. [ http://forge.jboss.org ]
+Hit '<TAB>' for a list of available commands and 'man [cmd]' for help on a specific command.
+
+To quit the shell, type 'exit'.
+
+[workshop]$ project-new --named customer-service --type spring-boot
+----
