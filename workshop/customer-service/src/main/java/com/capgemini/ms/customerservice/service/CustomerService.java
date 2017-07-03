@@ -22,21 +22,11 @@ public class CustomerService {
     return repository.save(customer);
   }
 
-  /**
-   * Get All customers
-   *
-   * @return customers List<Customer>
-   */
+
   public List<Customer> findCustomers() {
     return repository.findAll();
   }
 
-  /**
-   * Get a {@link Customer} entity by the given id
-   *
-   * @param id is the unique identifier of the {@link Customer} entity
-   * @return an {@link Customer} entity
-   */
   public Customer getCustomer(long id) {
     // Get the customer from the repository
     Customer customer = repository.findOne(id);
@@ -44,12 +34,6 @@ public class CustomerService {
     return customer;
   }
 
-  /**
-   * Update a {@link Customer} entity with the supplied identifier
-   *
-   * @param customer is the {@link Customer} containing the updated fields
-   * @return the updated {@link Customer} entity
-   */
   public Customer update(Customer customer) {
     Assert.notNull(customer.getId(), "Customer id must be present in the resource URL");
     Assert.notNull(customer, "Customer request body cannot be null");
