@@ -1,0 +1,2 @@
+insert into Customer(id, version, name, email) values(1001, 0, 'Important Customer', 'ic@email.com');
+insert into Customer(id, version, name, email) values(1002, 0, 'Another Important Customer', 'aic@email.com');
