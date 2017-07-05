@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: admin
+  context-path: /
+  cloud:
+    config:
+      uri: http://config:8888
+      failFast: true
+      user: user
+      password: password

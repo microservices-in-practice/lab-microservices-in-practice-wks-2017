@@ -1,0 +1,41 @@
+version: '3'
+services:
+
+  discovery:
+    image: ms-wks/discovery-service
+    restart: on-failure:10
+    networks:
+      - ms-wks
+    ports:
+      - 8761:8761
+    expose:
+      - 8761
+
+  gateway:
+    image: ms-wks/gateway-service
+    restart: on-failure:10
+    depends_on:
+      - discovery
+    networks:
+      - ms-wks
+    expose:
+     - 90
+    ports:
+     - 90:90
+
+  dashboard:
+    image: ms-wks/admin-service
+    restart: on-failure:10
+    depends_on:
+      - discovery
+    networks:
+      - ms-wks
+    ports:
+      - 8090:8080
+    expose:
+      - 8080
+
+networks:
+  ms-wks:
+    external:
+      name: ms-wks
