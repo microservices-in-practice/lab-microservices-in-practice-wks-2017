@@ -12,21 +12,18 @@ import java.util.List;
 @Component
 public class CustomerClient {
 
-    private final Logger log = LoggerFactory.getLogger(CustomerClient.class);
+  private final Logger log = LoggerFactory.getLogger(CustomerClient.class);
 
-    @Value("${customer.service.url}")
-    private String customerServiceUrl;
+  @Value("${customer.service.url}")
+  private String customerServiceUrl;
 
-    @Autowired
-    private RestTemplate restTemplate;
+  private RestTemplate restTemplate = new RestTemplate();
 
+  public List<Customer> getAllCustomers() {
+    return restTemplate.getForObject(customerServiceUrl, List.class);
+  }
 
-    public List<Customer> getAllCustomers() {
-        return restTemplate.getForObject(customerServiceUrl, List.class);
-    }
-
-    public Customer getOne(long customerId) {
-        return restTemplate.getForObject(customerServiceUrl + customerId, Customer.class);
-    }
-
+  public Customer getCustomer(long id) {
+    return restTemplate.getForObject(customerServiceUrl + id, Customer.class);
+  }
 }

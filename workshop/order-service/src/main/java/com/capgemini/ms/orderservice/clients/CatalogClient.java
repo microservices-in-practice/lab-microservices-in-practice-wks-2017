@@ -12,21 +12,19 @@ import java.util.List;
 @Component
 public class CatalogClient {
 
-    private final Logger log = LoggerFactory.getLogger(CatalogClient.class);
+  private final Logger log = LoggerFactory.getLogger(CatalogClient.class);
 
-    @Value("${catalog.service.url}")
-    private String catalogServiceUrl;
+  @Value("${catalog.service.url}")
+  private String catalogServiceUrl;
 
-    @Autowired
-    private RestTemplate restTemplate;
+  private RestTemplate restTemplate = new RestTemplate();
 
+  public List<Item> getAllItems() {
+    return restTemplate.getForObject(catalogServiceUrl, List.class);
+  }
 
-    public List<Item> getAllItems() {
-        return restTemplate.getForObject(catalogServiceUrl, List.class);
-    }
-
-    public Item getOne(long itemId) {
-        return restTemplate.getForObject(catalogServiceUrl + itemId, Item.class);
-    }
+  public Item getItem(long id) {
+    return restTemplate.getForObject(catalogServiceUrl + id, Item.class);
+  }
 
 }

@@ -43,6 +43,29 @@ services:
       - MYSQL_ROOT_PASSWORD=dbpass
       - MYSQL_DATABASE=customers
 
+  order:
+    image: ms-wks/order-service
+    restart: on-failure:10
+    depends_on:
+      - orderdb
+      - catalog
+      - customer
+    networks:
+      - ms-wks
+    expose:
+     - 8080
+    ports:
+     - 8083:8080
+
+  orderdb:
+    image: mysql:8.0
+    # container_name: orderdb
+    networks:
+      - ms-wks
+    environment:
+      - MYSQL_ROOT_PASSWORD=dbpass
+      - MYSQL_DATABASE=orders
+
 networks:
   ms-wks:
     external:

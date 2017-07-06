@@ -1,0 +1,11 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: order
+  cloud:
+    config:
+      uri: http://config:8888
+      failFast: true
+      user: user
+      password: password
