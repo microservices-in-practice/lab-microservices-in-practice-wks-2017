@@ -53,7 +53,7 @@ public class CatalogClientHystrix {
   }
 
   public Item getItemFromCache(long id) {
-    if (cacheManager.getCache("item") != null && cacheManager.getCache("customers").get(SimpleKey.EMPTY) != null) {
+    if (cacheManager.getCache("item") != null && cacheManager.getCache("item").get(SimpleKey.EMPTY) != null) {
       return cacheManager.getCache("item").get(id, Item.class);
     } else {
       return null;
