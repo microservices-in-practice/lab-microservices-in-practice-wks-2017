@@ -1,0 +1,49 @@
+version: '3'
+services:
+
+  catalog:
+    image: ms-wks/catalog-service
+    restart: on-failure:10
+    depends_on:
+      - catalogdb
+    networks:
+      - ms-wks
+    expose:
+     - 8080
+    ports:
+     - 8081:8080
+
+  catalogdb:
+    image: mysql:8.0
+    # container_name: catalogdb
+    networks:
+      - ms-wks
+    environment:
+      - MYSQL_ROOT_PASSWORD=dbpass
+      - MYSQL_DATABASE=items
+
+  customer:
+    image: ms-wks/customer-service
+    restart: on-failure:10
+    depends_on:
+      - customerdb
+    networks:
+      - ms-wks
+    expose:
+     - 8080
+    ports:
+     - 8082:8080
+
+  customerdb:
+    image: mysql:8.0
+    # container_name: customerdb
+    networks:
+      - ms-wks
+    environment:
+      - MYSQL_ROOT_PASSWORD=dbpass
+      - MYSQL_DATABASE=customers
+
+networks:
+  ms-wks:
+    external:
+      name: ms-wks

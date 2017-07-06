@@ -21,6 +21,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 		<spring-cloud.version>Dalston.SR1</spring-cloud.version>
+		<docker.image.prefix>ms-wks</docker.image.prefix>
 	</properties>
 
 	<dependencies>
@@ -35,6 +36,10 @@
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-eureka</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-hystrix</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -113,6 +118,43 @@
 						<directory>src/main/resources</directory>
 					</resource>
 				</resources>
+				<plugins>
+					<plugin>
+						<groupId>io.fabric8</groupId>
+						<artifactId>docker-maven-plugin</artifactId>
+						<version>0.21.0</version>
+						<configuration>
+							<images>
+								<image>
+									<!--<alias>${project.artifactId}</alias>-->
+									<name>${docker.image.prefix}/${project.artifactId}</name>
+									<build>
+										<dockerFileDir>${project.basedir}/src/main/docker</dockerFileDir>
+										<assembly>
+											<descriptorRef>artifact</descriptorRef>
+										</assembly>
+									</build>
+									<run>
+										<network>
+											<mode>custom</mode>
+											<name>ipservice</name>
+											<alias>ipservice</alias>
+										</network>
+									</run>
+								</image>
+							</images>
+						</configuration>
+						<executions>
+							<execution>
+								<id>docker:build</id>
+								<phase>package</phase>
+								<goals>
+									<goal>build</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
 			</build>
 			<dependencies>
 				<dependency>

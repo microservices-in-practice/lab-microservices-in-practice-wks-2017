@@ -5,7 +5,7 @@ spring.boot.admin.turbine:
   location: admin
 
 turbine:
-  appConfig: discovery, customers, catalog, order
+  appConfig: discovery, customer, catalog, order
   clusterNameExpression: "'default'"
   instanceUrlSuffix:
     default: /private/hystrix.stream

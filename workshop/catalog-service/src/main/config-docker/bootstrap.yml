@@ -1,9 +1,8 @@
 server:
-  port: 90
-
+  port: 8080
 spring:
   application:
-    name: gateway
+    name: catalog
   cloud:
     config:
       uri: http://config:8888
