@@ -8,7 +8,7 @@ spring:
       failFast: true
       server:
         git:
-          uri: https://github.com/xpaas-solutions/lab-microservices-in-practice-config.git
+          uri: https://github.com/xpaas-solutions/lab-microservices-in-practice-wks-2017-config.git
     stream:
       kafka:
         binder:
